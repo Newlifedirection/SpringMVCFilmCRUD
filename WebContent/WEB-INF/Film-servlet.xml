@@ -11,5 +11,7 @@
   <context:component-scan base-package="com.skilldistillery.film.controllers"/>
  
   <bean id="dao" class="com.skilldistillery.film.dao.FilmDAOImpl"/>
+  
+  <mvc:annotation-driven />
  
 </beans>

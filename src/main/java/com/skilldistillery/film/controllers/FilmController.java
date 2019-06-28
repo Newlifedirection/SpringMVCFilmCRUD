@@ -32,7 +32,7 @@ public class FilmController {
 		try {
 			f = dao.findFilmById(n);
 			mv.addObject("film", f);
-			mv.setViewName("film.jsp");
+			mv.setViewName("result.jsp");
 		} catch (SQLException e) {
 			mv.setViewName("error.jsp");
 			e.printStackTrace();
