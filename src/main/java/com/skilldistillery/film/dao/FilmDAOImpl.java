@@ -16,7 +16,11 @@ public class FilmDAOImpl implements FilmDAO {
 	private final String USERNAME = "student";
 	private final String PASSWORD = "student";
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
-
+	
+	public FilmDAOImpl() throws ClassNotFoundException {
+		Class.forName("com.mysql.jdbc.Driver");
+	}
+	
 	@Override
 	public Film findFilmById(int filmId) throws SQLException {
 		Film film = null;
