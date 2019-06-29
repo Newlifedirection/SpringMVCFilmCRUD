@@ -5,8 +5,11 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.test.annotation.Rollback;
 
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
@@ -16,16 +19,16 @@ public class FilmDAOImpl implements FilmDAO {
 	private final String USERNAME = "student";
 	private final String PASSWORD = "student";
 	private static final String URL = "jdbc:mysql://localhost:3306/sdvid?useSSL=false";
-	
+
 	public FilmDAOImpl() throws ClassNotFoundException {
 		Class.forName("com.mysql.jdbc.Driver");
 	}
-	
+
 	@Override
 	public Film findFilmById(int filmId) throws SQLException {
 		Film film = null;
 		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-		String sql = "SELECT film.title, film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, l.name from film join language l on film.language_id = l.id where film.id =?";
+		String sql = "SELECT film.title, film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, l.name from film JOIN language l ON film.language_id = l.id WHERE film.id =?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, filmId);
 		ResultSet rs = pstmt.executeQuery();
@@ -33,12 +36,12 @@ public class FilmDAOImpl implements FilmDAO {
 			while (rs.next()) {
 				String title = rs.getString(1);
 				String desc = rs.getString(2);
-				String releaseYear = rs.getString(3);
+				Integer releaseYear = rs.getInt(3);
 				String langId = rs.getString(4);
-				int rentDur = rs.getInt(5);
-				double rate = rs.getDouble(6);
-				int length = rs.getInt(7);
-				double repCost = rs.getDouble(8);
+				Integer rentDur = rs.getInt(5);
+				Double rate = rs.getDouble(6);
+				Integer length = rs.getInt(7);
+				Double repCost = rs.getDouble(8);
 				String rating = rs.getString(9);
 				String features = rs.getString(10);
 				String language = rs.getString(11);
@@ -92,7 +95,7 @@ public class FilmDAOImpl implements FilmDAO {
 				int filmId = rs.getInt(1);
 				String title = rs.getString(2);
 				String desc = rs.getString(3);
-				String releaseYear = rs.getString(4);
+				Integer releaseYear = rs.getInt(4);
 				String langId = rs.getString(5);
 				int rentDur = rs.getInt(6);
 				double rate = rs.getDouble(7);
@@ -155,7 +158,7 @@ public class FilmDAOImpl implements FilmDAO {
 				int filmId = rs.getInt(1);
 				String title = rs.getString(2);
 				String desc = rs.getString(3);
-				String releaseYear = rs.getString(4);
+				Integer releaseYear = rs.getInt(4);
 				String langId = rs.getString(5);
 				int rentDur = rs.getInt(6);
 				double rate = rs.getDouble(7);
@@ -182,5 +185,74 @@ public class FilmDAOImpl implements FilmDAO {
 		System.err.println("Error message: " + e.getMessage());
 		System.err.println("Error code: " + e.getErrorCode());
 		System.err.println("SQL state: " + e.getSQLState());
+	}
+
+	@Override
+	public int addFilm(Film f) throws SQLException {
+		System.out.println(f);
+		int returnedId = 0;
+		String sql = "INSERT INTO film (title, description, release_year, language_id, rental_duration, rental_rate, length, replacement_cost, rating) "
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+		Connection conn = null;
+
+		try {
+			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn.setAutoCommit(false); // Start transaction
+			PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			pstmt.setString(1, f.getTitle());
+			pstmt.setString(2, f.getDescription());
+			pstmt.setInt(3, f.getReleaseYear());
+			pstmt.setString(4, f.getLanguageId());
+			pstmt.setInt(5, f.getRentalDuration());
+			pstmt.setDouble(6, f.getRentalRate());
+			pstmt.setInt(7, f.getLength());
+			pstmt.setDouble(8, f.getReplacementCost());
+			pstmt.setString(9, f.getRating());
+
+			int uc = pstmt.executeUpdate();
+			ResultSet keys = pstmt.getGeneratedKeys();
+			
+			while (keys.next()) {
+				returnedId = keys.getInt(1);
+			}
+			
+			System.out.println(uc);
+			conn.commit();
+		} catch (SQLException e) {
+			conn.rollback();
+			processException(e);
+		}
+
+		return returnedId;
+	}
+
+	@Override
+	public Film updateFilm(Film f) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteFilm(int filmId) throws SQLException {
+		String sql = "DELETE FROM film WHERE id=?";
+		Connection conn = null;
+		try {
+			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, filmId);
+			conn.setAutoCommit(false); // Start transaction
+			int uc = pstmt.executeUpdate();
+			conn.commit();
+			return uc;
+		} catch (SQLException e) {
+			System.out.println("Delete Not Allowed");
+			conn.rollback();
+			processException(e);
+
+		} finally {
+			conn.close();
+		}
+		return filmId;
 	}
 }

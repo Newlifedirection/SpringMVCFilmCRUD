@@ -13,5 +13,9 @@
   <bean id="dao" class="com.skilldistillery.film.dao.FilmDAOImpl"/>
   
   <mvc:annotation-driven />
- 
+ <bean 
+ class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+ <property name="prefix" value="/WEB-INF/"></property>
+ <property name="suffix" value=".jsp"></property>
+ </bean>
 </beans>

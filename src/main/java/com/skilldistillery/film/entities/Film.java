@@ -5,18 +5,19 @@ public class Film {
 	private int filmId;
 	private String title;
 	private String description;
-	private String releaseYear;
+	private Integer releaseYear;
 	private String languageId;
-	private int rentalDuration;
-	private double rentalRate;
-	private int length;
-	private double replacementCost;
+	private Integer rentalDuration;
+	private Double rentalRate;
+	private Integer length;
+	private Double replacementCost;
 	private String rating;
 	private String specialFeature;
 	private String language;
 
-	public Film(int filmId, String title, String description, String releaseYear, String languageId, int rentalDuration,
-			double rentalRate, int length, double replacementCost, String rating, String specialFeature, String language) {
+	public Film() {}
+	public Film(int filmId, String title, String description, Integer releaseYear, String languageId, Integer rentalDuration,
+			Double rentalRate, Integer length, Double replacementCost, String rating, String specialFeature, String language) {
 		super();
 		this.filmId = filmId;
 		this.title = title;
@@ -47,10 +48,11 @@ public class Film {
 		int result = 1;
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + filmId;
+		result = prime * result + ((language == null) ? 0 : language.hashCode());
 		result = prime * result + ((languageId == null) ? 0 : languageId.hashCode());
 		result = prime * result + length;
 		result = prime * result + ((rating == null) ? 0 : rating.hashCode());
-		result = prime * result + ((releaseYear == null) ? 0 : releaseYear.hashCode());
+		result = prime * result + releaseYear;
 		result = prime * result + rentalDuration;
 		long temp;
 		temp = Double.doubleToLongBits(rentalRate);
@@ -78,6 +80,11 @@ public class Film {
 			return false;
 		if (filmId != other.filmId)
 			return false;
+		if (language == null) {
+			if (other.language != null)
+				return false;
+		} else if (!language.equals(other.language))
+			return false;
 		if (languageId == null) {
 			if (other.languageId != null)
 				return false;
@@ -90,10 +97,7 @@ public class Film {
 				return false;
 		} else if (!rating.equals(other.rating))
 			return false;
-		if (releaseYear == null) {
-			if (other.releaseYear != null)
-				return false;
-		} else if (!releaseYear.equals(other.releaseYear))
+		if (releaseYear != other.releaseYear)
 			return false;
 		if (rentalDuration != other.rentalDuration)
 			return false;
@@ -113,101 +117,79 @@ public class Film {
 			return false;
 		return true;
 	}
-
 	public int getFilmId() {
 		return filmId;
 	}
-
 	public void setFilmId(int filmId) {
 		this.filmId = filmId;
 	}
-
 	public String getTitle() {
 		return title;
 	}
-
 	public void setTitle(String title) {
 		this.title = title;
 	}
-
 	public String getDescription() {
 		return description;
 	}
-
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
-	public String getReleaseYear() {
+	public Integer getReleaseYear() {
 		return releaseYear;
 	}
-
-	public void setReleaseYear(String releaseYear) {
+	public void setReleaseYear(Integer releaseYear) {
 		this.releaseYear = releaseYear;
 	}
-
 	public String getLanguageId() {
 		return languageId;
 	}
-
 	public void setLanguageId(String languageId) {
 		this.languageId = languageId;
 	}
-
-	public int getRentalDuration() {
+	public Integer getRentalDuration() {
 		return rentalDuration;
 	}
-
-	public void setRentalDuration(int rentalDuration) {
+	public void setRentalDuration(Integer rentalDuration) {
 		this.rentalDuration = rentalDuration;
 	}
-
-	public double getRentalRate() {
+	public Double getRentalRate() {
 		return rentalRate;
 	}
-
-	public void setRentalRate(double rentalRate) {
+	public void setRentalRate(Double rentalRate) {
 		this.rentalRate = rentalRate;
 	}
-
-	public int getLength() {
+	public Integer getLength() {
 		return length;
 	}
-
-	public void setLength(int length) {
+	public void setLength(Integer length) {
 		this.length = length;
 	}
-
-	public double getReplacementCost() {
+	public Double getReplacementCost() {
 		return replacementCost;
 	}
-
-	public void setReplacementCost(double replacementCost) {
+	public void setReplacementCost(Double replacementCost) {
 		this.replacementCost = replacementCost;
 	}
-
 	public String getRating() {
 		return rating;
 	}
-
 	public void setRating(String rating) {
 		this.rating = rating;
 	}
-
 	public String getSpecialFeature() {
 		return specialFeature;
 	}
-
 	public void setSpecialFeature(String specialFeature) {
 		this.specialFeature = specialFeature;
 	}
-
 	public String getLanguage() {
 		return language;
 	}
-
 	public void setLanguage(String language) {
 		this.language = language;
 	}
+
+
 
 }

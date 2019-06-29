@@ -33,9 +33,70 @@ public class FilmController {
 		try {
 			f = dao.findFilmById(n);
 			mv.addObject("film", f);
-			mv.setViewName("result.jsp");
+			mv.setViewName("result");
 		} catch (SQLException e) {
-			mv.setViewName("error.jsp");
+			mv.setViewName("error");
+			e.printStackTrace();
+		}
+		return mv;
+		
+	}
+	
+	@RequestMapping(path="AddFilm.do", method=RequestMethod.POST)
+	public ModelAndView addFilm(Film f) {
+		ModelAndView mv = new ModelAndView();
+		int newId;
+		Film newFilm = null;
+		try {
+			newId = dao.addFilm(f);
+			newFilm = dao.findFilmById(newId);
+			mv.addObject("film", newFilm);
+			mv.setViewName("result");
+		} catch (SQLException e) {
+			mv.setViewName("error");
+			e.printStackTrace();
+		}
+		return mv;
+		
+	}
+	@RequestMapping(path="updateFilm.do", method=RequestMethod.POST)
+	public ModelAndView updateFilm(Film f) {
+		ModelAndView mv = new ModelAndView();
+		try {
+			f = dao.updateFilm(f);
+			mv.addObject("film", f);
+			mv.setViewName("result");
+		} catch (SQLException e) {
+			mv.setViewName("error");
+			e.printStackTrace();
+		}
+		return mv;
+		
+	}
+	
+	@RequestMapping(path="updateFilm.do", method=RequestMethod.GET)
+	public ModelAndView updateFilmPage(int filmID) {
+		ModelAndView mv = new ModelAndView();
+		Film filmToEdit = null;
+		try {
+			filmToEdit = dao.findFilmById(filmID);
+			mv.addObject("film", filmToEdit);
+			mv.setViewName("updatefilm");
+		} catch (SQLException e) {
+			mv.setViewName("error");
+			e.printStackTrace();
+		}
+		return mv;
+		
+	}
+	@RequestMapping(path="deleteFilm.do", method=RequestMethod.POST)
+	public ModelAndView delete(int filmId) {
+		ModelAndView mv = new ModelAndView();
+		try {
+			dao.deleteFilm(filmId);
+			mv.setViewName("index.html");
+		} catch (SQLException e) {
+			mv.setViewName("error");
 			e.printStackTrace();
 		}
 		return mv;
