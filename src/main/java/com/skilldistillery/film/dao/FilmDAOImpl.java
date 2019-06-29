@@ -21,23 +21,23 @@ public class FilmDAOImpl implements FilmDAO {
 	public Film findFilmById(int filmId) throws SQLException {
 		Film film = null;
 		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-		String sql = "SELECT film.id, film.title, film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, l.name from film join language l on film.language_id = l.id where film.id =?";
+		String sql = "SELECT film.title, film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, l.name from film join language l on film.language_id = l.id where film.id =?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, filmId);
 		ResultSet rs = pstmt.executeQuery();
 		try {
 			while (rs.next()) {
-				String title = rs.getString(2);
-				String desc = rs.getString(3);
-				String releaseYear = rs.getString(4);
-				String langId = rs.getString(5);
-				int rentDur = rs.getInt(6);
-				double rate = rs.getDouble(7);
-				int length = rs.getInt(8);
-				double repCost = rs.getDouble(9);
-				String rating = rs.getString(10);
-				String features = rs.getString(11);
-				String language = rs.getString(12);
+				String title = rs.getString(1);
+				String desc = rs.getString(2);
+				String releaseYear = rs.getString(3);
+				String langId = rs.getString(4);
+				int rentDur = rs.getInt(5);
+				double rate = rs.getDouble(6);
+				int length = rs.getInt(7);
+				double repCost = rs.getDouble(8);
+				String rating = rs.getString(9);
+				String features = rs.getString(10);
+				String language = rs.getString(11);
 				film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
 						features, language);
 			}
