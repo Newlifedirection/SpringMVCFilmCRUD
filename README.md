@@ -3,7 +3,7 @@ Collaborators: Craig Dreiling and Cecil Kitch
 ### Week 8 HomeWork Team Project for Skill Distillery
 
 ### Overview
-Web Application using JDBC Programming to perform CRUD Operations using mySql/SQL. User can add films or query for  film by id or keyword.
+Web Application using Java 8 JDBC API to perform CRUD Operations using mySql/SQL. User can add films or query for  film by id or keyword.
 
 ### Technologies Used
 git/gitHub, mySql/SQL, MAMP, Spring Tool Suite/Eclipse, Gradle, Maven,
