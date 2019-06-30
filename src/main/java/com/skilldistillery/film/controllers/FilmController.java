@@ -46,7 +46,6 @@ public class FilmController {
 	@RequestMapping(path = "AddFilm.do", method = RequestMethod.GET)
 	public ModelAndView addFilmToDatabase(Film film) {
 		ModelAndView mv = new ModelAndView();
-
 		mv.setViewName("addFilm");
 		return mv;
 	}
@@ -69,7 +68,7 @@ public class FilmController {
 
 	}
 
-	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)
+	@RequestMapping(path = "UpdateFilm.do", method = RequestMethod.POST)
 	public ModelAndView updateFilm(Film f) {
 		ModelAndView mv = new ModelAndView();
 		Film filmToEdit = null;
@@ -85,7 +84,7 @@ public class FilmController {
 
 	}
 
-	@RequestMapping(path = "updateFilm.do", method = RequestMethod.GET)
+	@RequestMapping(path = "UpdateFilm.do", method = RequestMethod.GET)
 	public ModelAndView updateFilmPage(int filmId) {
 		System.out.println(filmId);
 		ModelAndView mv = new ModelAndView();
@@ -99,10 +98,9 @@ public class FilmController {
 			e.printStackTrace();
 		}
 		return mv;
-
 	}
 
-	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
+	@RequestMapping(path = "DeleteFilm.do", method = RequestMethod.POST)
 	public ModelAndView delete(Integer filmId) {
 		ModelAndView mv = new ModelAndView();
 		try {
@@ -116,7 +114,7 @@ public class FilmController {
 
 	}
 
-	@RequestMapping(path = "searchFilm.do", method = RequestMethod.GET)
+	@RequestMapping(path = "SearchFilm.do", method = RequestMethod.GET)
 	public ModelAndView search() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("search");

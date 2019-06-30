@@ -31,21 +31,20 @@
 				<li>Replacement Cost: ${film.replacementCost}</li>
 				<li>Rating: ${film.rating}</li>
 			</ul>
-
 		</c:when>
 		<c:otherwise>
 			<h2>No Film Found</h2>
 		</c:otherwise>
 	</c:choose>
 	<form action=GetFilmData.do method="GET">
-		Enter Film ID: <input type="number" name="filmId" /> <input
-			type="submit" value="Get Film Data" />
+		Enter Film ID: <input type="number" value="${film.filmId }"
+			name="filmId" /> <input type="submit" value="Get Film Data" />
 	</form>
-	<form action="deleteFilm.do" method="POST">
+	<form action="DeleteFilm.do" method="POST">
 		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
 			type="submit" value="Delete" />
 	</form>
-	<form action="updateFilm.do" method="GET">
+	<form action="UpdateFilm.do" method="GET">
 		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
 			type="submit" value="Update" />
 	</form>

@@ -24,6 +24,7 @@ public interface FilmDAO {
 	
 	public int deleteFilm(Integer filmId) throws SQLException;
 	
-	public Film findFilmCategories(int filmId) throws SQLException;
+	public Film findFilmCategories(Film f) throws SQLException;
+
 
 }

@@ -15,7 +15,7 @@
 
 </head>
 <body>
-<a href="index.html" class="btn btn-block btn-info">Home</a>
+	<a href="index.html" class="btn btn-block btn-info">Home</a>
 	<c:choose>
 		<c:when test="${! empty films}">
 			<form action="SearchResults.do" method="GET">
@@ -28,11 +28,17 @@
 					<tr>
 						<th scope="col">Title</th>
 						<th scope="col">Description</th>
+						<th scope="col">Details</th>
 					</tr>
 					<c:forEach items="${films}" var="film">
 						<tr>
 							<td>${film.title}</td>
 							<td>${film.description }</td>
+							<td>
+								<form action=GetFilmData.do method="GET">
+								<input type="hidden" value="${film.filmId }" name="filmId" /> 
+								<input type="submit" value="Details" />
+								</form>
 						</tr>
 					</c:forEach>
 			</table>

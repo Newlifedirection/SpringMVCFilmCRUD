@@ -15,6 +15,7 @@ public class Film {
 	private String specialFeature;
 	private String language;
 	private String categories;
+	private String category;
 
 	public String getCategories() {
 		return categories;
@@ -195,6 +196,12 @@ public class Film {
 	}
 	public void setLanguage(String language) {
 		this.language = language;
+	}
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 

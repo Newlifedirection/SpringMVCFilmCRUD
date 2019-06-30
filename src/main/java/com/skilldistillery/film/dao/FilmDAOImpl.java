@@ -166,7 +166,7 @@ public class FilmDAOImpl implements FilmDAO {
 				double repCost = rs.getDouble(9);
 				String rating = rs.getString(10);
 				String features = rs.getString(11);
-		
+
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
 						features, null);
 				films.add(film);
@@ -212,11 +212,11 @@ public class FilmDAOImpl implements FilmDAO {
 
 			int uc = pstmt.executeUpdate();
 			ResultSet keys = pstmt.getGeneratedKeys();
-			
+
 			while (keys.next()) {
 				returnedId = keys.getInt(1);
 			}
-			
+
 			System.out.println(uc);
 			conn.commit();
 		} catch (SQLException e) {
@@ -248,7 +248,6 @@ public class FilmDAOImpl implements FilmDAO {
 			System.out.println(pstmt);
 			int uc = pstmt.executeUpdate();
 
-		
 			conn.commit();
 
 		} catch (SQLException e) {
@@ -257,7 +256,7 @@ public class FilmDAOImpl implements FilmDAO {
 			processException(e);
 		}
 		return f;
-	
+
 	}
 
 	@Override
@@ -284,23 +283,23 @@ public class FilmDAOImpl implements FilmDAO {
 		return filmId;
 	}
 
-	@Override
-	public Film findFilmCategories(int filmId) throws SQLException {
-			Film film = null;
-			Connection conn = DriverManager.getConnection(URL, "student", "student");
-			String sql = " SELECT cat.name FROM film f JOIN film_category fc ON fc.film_id = f.id JOIN category cat ON fc.category_id = cat.id WHERE f.id = ?";
-			PreparedStatement stmt = conn.prepareStatement(sql);
-			stmt.setInt(1, filmId);
-			ResultSet filmCategories = stmt.executeQuery();
-			if (filmCategories.next()) {
-				String categories = filmCategories.getString(1);
-				film.setCategories(categories);
-			}
-			filmCategories.close();
-			stmt.close();
-			conn.close();
-			return film;
-		
-	}
 	
+	public Film findFilmCategories(Film f) throws SQLException {
+		Connection conn = DriverManager.getConnection(URL, "student", "student");
+		String sql = " SELECT cat.name FROM film f JOIN film_category fc ON fc.film_id = f.id JOIN category cat ON fc.category_id = cat.id WHERE f.id = ?";
+		PreparedStatement stmt = conn.prepareStatement(sql);
+		if (f != null) {
+		stmt.setInt(1, f.getFilmId());
+		ResultSet filmCategories = stmt.executeQuery();
+		if (filmCategories.next()) {
+			String category = filmCategories.getString(1);
+			f.setCategories(category);
+		}
+		filmCategories.close();
+		stmt.close();
+		conn.close();
+		} 
+		return f;
+	}
+
 }
