@@ -265,17 +265,27 @@ public class FilmDAOImpl implements FilmDAO {
 
 	@Override
 	public int deleteFilm(Integer filmId) throws SQLException {
-		String sql = "DELETE FROM film WHERE id=?";
 		System.out.println(filmId);
 		Connection conn = null;
+		String sql = "DELETE FROM film_category WHERE film_id = ?";
+		int uc =0;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, filmId);
-			int uc = pstmt.executeUpdate();
+			System.out.println(pstmt);
+
+			uc = pstmt.executeUpdate();
+			sql = "DELETE FROM film WHERE id=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, filmId);
+			System.out.println(pstmt);
+
+			uc = pstmt.executeUpdate();
+
 			conn.commit();
-			return uc;
+			conn.close();
 		} catch (SQLException e) {
 			System.out.println("Delete Not Allowed");
 			conn.rollback();
@@ -284,6 +294,6 @@ public class FilmDAOImpl implements FilmDAO {
 		} finally {
 			conn.close();
 		}
-		return filmId;
+		return uc;
 	}
 }
