@@ -20,26 +20,26 @@
 		<c:when test="${! empty film}">
 			<h2>Film Details</h2>
 			<ul>
-				<li>Film ID: ${film.filmId}</li>
-				<li>Title: ${film.title}</li>
-				<li>Description: ${film.description}</li>
-				<li>Release Year: ${film.releaseYear}</li>
-				<li>Language ID: ${film.languageId}</li>
-				<li>Rental Duration: ${film.rentalDuration}</li>
-				<li>Rental Rate: ${film.rentalRate}</li>
-				<li>Length: ${film.length}</li>
-				<li>Replacement Cost: ${film.replacementCost}</li>
-				<li>Rating: ${film.rating}</li>
-				<br>
-				<li>Actors:<br><c:choose>
-						<c:when test="${! empty actors}">
-							<c:forEach items="${actors}" var="actor">
+				<li><strong>Film ID:</strong> ${film.filmId}</li>
+				<li><strong>Title:</strong> ${film.title}</li>
+				<li><strong>Description:</strong> ${film.description}</li>
+				<li><strong>Release Year:</strong> ${film.releaseYear}</li>
+				<li><strong>Language ID:</strong> ${film.languageId}</li>
+				<li><strong>Rental Duration:</strong> ${film.rentalDuration}</li>
+				<li><strong>Rental Rate:</strong> ${film.rentalRate}</li>
+				<li><strong>Length:</strong> ${film.length}</li>
+				<li><strong>Replacement Cost:</strong> ${film.replacementCost}</li>
+				<li><strong>Rating:</strong> ${film.rating}<br></li>
+				<li><strong>Actors:</strong><br> <c:choose>
+						<c:when test="${! empty actors }">
+							<c:forEach items="${actors }" var="actor">
 								<tr>
-									<td>${actor.firstName} ${actor.lastName }<br></td>
+									<td>${actor.firstName } ${actor.lastName }<br></td>
 								</tr>
 							</c:forEach>
 						</c:when>
 					</c:choose></li>
+				<li><strong>Category:</strong> ${film.category }</li>
 			</ul>
 		</c:when>
 		<c:otherwise>

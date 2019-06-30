@@ -23,8 +23,5 @@ public interface FilmDAO {
 	public Film updateFilm(Film f) throws SQLException;
 	
 	public int deleteFilm(Integer filmId) throws SQLException;
-	
-	public Film findFilmCategories(Film f) throws SQLException;
-
 
 }

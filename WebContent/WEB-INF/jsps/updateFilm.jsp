@@ -19,16 +19,16 @@
 	<c:choose>
 		<c:when test="${! empty film}">
 			<ul>
-				<li>Film ID: ${film.filmId}</li>
-				<li>Title: ${film.title}</li>
-				<li>Description: ${film.description}</li>
-				<li>Release Year: ${film.releaseYear}</li>
-				<li>Language ID: ${film.languageId}</li>
-				<li>Rental Duration: ${film.rentalDuration}</li>
-				<li>Rental Rate: ${film.rentalRate}</li>
-				<li>Length: ${film.length}</li>
-				<li>Replacement Cost: ${film.replacementCost}</li>
-				<li>Rating: ${film.rating}</li>
+				<li><strong>Film ID:</strong> ${film.filmId}</li>
+				<li><strong>Title:</strong> ${film.title}</li>
+				<li><strong>Description:</strong> ${film.description}</li>
+				<li><strong>Release Year:</strong> ${film.releaseYear}</li>
+				<li><strong>Language ID:</strong> ${film.languageId}</li>
+				<li><strong>Rental Duration:</strong> ${film.rentalDuration}</li>
+				<li><strong>Rental Rate:</strong> ${film.rentalRate}</li>
+				<li><strong>Length:</strong> ${film.length}</li>
+				<li><strong>Replacement Cost:</strong> ${film.replacementCost}</li>
+				<li><strong>Rating:</strong> ${film.rating}<br></li>
 			</ul>
 		</c:when>
 		<c:otherwise>
@@ -39,45 +39,45 @@
 	<form action="UpdateFilm.do" modelAttribute="film" method="POST">
 		<table>
 			<tr>
-				<td>Title :</td>
+				<td><strong>Title :</strong></td>
 				<td><input type="text" name="title" value="${film.title}" /></td>
 			</tr>
 			<tr>
-				<td>Description :</td>
+				<td><strong>Description :</strong></td>
 				<td><input type="text" name="description"
 					value="${film.description}" /></td>
 			</tr>
 			<tr>
-				<td>Release Year :</td>
+				<td><strong>Release Year :</strong></td>
 				<td><input type="text" name="releaseYear"
 					value="${film.releaseYear}" /></td>
 			</tr>
 			<tr>
-				<td>Language ID :</td>
+				<td><strong>Language ID :</strong></td>
 				<td><input type="text" name="languageId"
 					value="${film.languageId}" /></td>
 			</tr>
 			<tr>
-				<td>Rental Duration :</td>
+				<td><strong>Rental Duration :</strong></td>
 				<td><input type="text" name="rentalDuration"
 					value="${film.rentalDuration}" /></td>
 			</tr>
 			<tr>
-				<td>Rental Rate :</td>
+				<td><strong>Rental Rate :</strong></td>
 				<td><input type="text" name="rentalRate"
 					value="${film.rentalRate}" /></td>
 			</tr>
 			<tr>
-				<td>Length :</td>
+				<td><strong>Length :</strong></td>
 				<td><input type="text" name="length" value="${film.length}" /></td>
 			</tr>
 			<tr>
-				<td>Replacement Cost :</td>
+				<td><strong>Replacement Cost :</strong></td>
 				<td><input type="text" name="replacementCost"
 					value="${film.replacementCost}" /></td>
 			</tr>
 			<tr>
-				<td>Rating :</td>
+				<td><strong>Rating :</strong></td>
 				<td><label><input type="radio" name="rating" value="G">G</label><br>
 					<label><input type="radio" name="rating" value="PG">PG</label><br>
 					<label><input type="radio" name="rating" value="PG13">PG13</label><br>

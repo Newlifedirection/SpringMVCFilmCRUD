@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert Film</title>
+<title>Add Film</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -18,41 +18,40 @@
 	<h2>Add New Film</h2>
 	<form action="AddFilm.do" modelAttribute="film" method="post">
 		<table>
-			<form>
 				<tr>
-					<td>Title :</td>
-					<td><input type="text" name="title" /></td>
+					<td><strong>Title :</strong></td>
+					<td><input type="text" name="title" size="30"/></td>
 				</tr>
 				<tr>
-					<td>Description :</td>
-					<td><input type="text" name="description" /></td>
+					<td><strong>Description :</strong></td>
+					<td><input type="text" name="description" size="30" /></td>
 				</tr>
 				<tr>
-					<td>Release Year</td>
-					<td><input type="number" name="releaseYear" /></td>
+					<td><strong>Release Year</strong></td>
+					<td><input type="text" name="releaseYear" size="30" /></td>
 				</tr>
 				<tr>
-					<td>Language ID :</td>
-					<td><input type="number" name="languageId" /></td>
+					<td><strong>Language ID :</strong></td>
+					<td><input type="text" name="languageId" size="30" /></td>
 				</tr>
 				<tr>
-					<td>Rental Duration :</td>
-					<td><input type="number" name="rentalDuration" /></td>
+					<td><strong>Rental Duration :</strong></td>
+					<td><input type="text" name="rentalDuration" size="30" /></td>
 				</tr>
 				<tr>
-					<td>Rental Rate :</td>
-					<td><input type="number" name="rentalRate" /></td>
+					<td><strong>Rental Rate :</strong></td>
+					<td><input type="text" name="rentalRate"size="30" /></td>
 				</tr>
 				<tr>
-					<td>Length :</td>
-					<td><input type="number" name="length" /></td>
+					<td><strong>Length :</strong></td>
+					<td><input type="text" name="length" size="30" /></td>
 				</tr>
 				<tr>
-					<td>Replacement Cost :</td>
-					<td><input type="number" name="replacementCost" /></td>
+					<td><strong>Replacement Cost :</strong></td>
+					<td><input type="text" name="replacementCost" size="30" /></td>
 				</tr>
 				<tr>
-					<td>Rating :</td>
+					<td><strong>Rating :</strong></td>
 					<td><label><input type="radio" name="rating" value="G">G</label><br>
 						<label><input type="radio" name="rating" value="PG">PG</label><br>
 						<label><input type="radio" name="rating" value="PG13">PG13</label><br>
@@ -63,7 +62,6 @@
 					<td></td>
 					<td><input type="submit" value="Submit" /></td>
 				</tr>
-			</form>
 		</table>
 	</form>
 </body>
