@@ -229,7 +229,7 @@ public class FilmDAOImpl implements FilmDAO {
 
 	@Override
 	public Film updateFilm(Film f) throws SQLException {
-		String sql = "UPDATE film SET title= ?, description= ?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=? where id=?";
+		String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=? where id=?";
 		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
