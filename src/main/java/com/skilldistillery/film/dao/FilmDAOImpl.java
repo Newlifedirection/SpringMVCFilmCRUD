@@ -70,6 +70,7 @@ public class FilmDAOImpl implements FilmDAO {
 				actor.setFilms(findFilmsByActorId(actorId));
 				return actor;
 			}
+
 		} catch (SQLException e) {
 			processException(e);
 		} finally {
@@ -105,6 +106,9 @@ public class FilmDAOImpl implements FilmDAO {
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
 						features, null, null);
 				films.add(film);
+				rs.close();
+				pstmt.close();
+				conn.close();
 				return films;
 			}
 		} catch (SQLException e) {
@@ -132,6 +136,9 @@ public class FilmDAOImpl implements FilmDAO {
 				Actor actor = new Actor(filmId, firstName, lastName);
 				actors.add(actor);
 			}
+			rs.close();
+			pstmt.close();
+			conn.close();
 		} catch (SQLException e) {
 			processException(e);
 		} finally {
@@ -168,6 +175,9 @@ public class FilmDAOImpl implements FilmDAO {
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
 						features, null, null);
 				films.add(film);
+				rs.close();
+				pstmt.close();
+				conn.close();
 			}
 		} catch (SQLException e) {
 			processException(e);
@@ -214,18 +224,22 @@ public class FilmDAOImpl implements FilmDAO {
 
 			while (keys.next()) {
 				returnedId = keys.getInt(1);
-				
+
 			}
 			sql = "INSERT INTO film_category (film_id, category_id) VALUES (?,1)";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, returnedId);
 			uc = pstmt.executeUpdate();
-			System.out.println("inserted" + returnedId );
+			System.out.println("inserted" + returnedId);
 			System.out.println(uc);
 			conn.commit();
+			pstmt.close();
+			conn.close();
 		} catch (SQLException e) {
 			conn.rollback();
 			processException(e);
+		} finally {
+			conn.close();
 		}
 
 		return returnedId;
@@ -251,13 +265,16 @@ public class FilmDAOImpl implements FilmDAO {
 			pstmt.setInt(9, f.getFilmId());
 			System.out.println(pstmt);
 			int uc = pstmt.executeUpdate();
-
+			System.out.println(uc);
 			conn.commit();
-
+			pstmt.close();
+			conn.close();
 		} catch (SQLException e) {
 			System.out.println("Failed to Update");
 			conn.rollback();
 			processException(e);
+		} finally {
+			conn.close();
 		}
 		return f;
 
@@ -268,7 +285,7 @@ public class FilmDAOImpl implements FilmDAO {
 		System.out.println(filmId);
 		Connection conn = null;
 		String sql = "DELETE FROM film_category WHERE film_id = ?";
-		int uc =0;
+		int uc = 0;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 			conn.setAutoCommit(false); // Start transaction
@@ -285,6 +302,7 @@ public class FilmDAOImpl implements FilmDAO {
 			uc = pstmt.executeUpdate();
 
 			conn.commit();
+			pstmt.close();
 			conn.close();
 		} catch (SQLException e) {
 			System.out.println("Delete Not Allowed");
