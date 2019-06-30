@@ -7,6 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Film</title>
+<link rel='stylesheet' href='style.css'>
 </head>
 <body>
 	<c:choose>
@@ -22,7 +23,7 @@
 				<li>${film.length}</li>
 				<li>${film.replacementCost}</li>
 				<li>${film.rating}</li>
-				<%--  <li>${film.language}</li> --%>
+	
 			</ul>
 		</c:when>
 		<c:otherwise>
@@ -30,14 +31,13 @@
 		</c:otherwise>
 	</c:choose>
 	<form action="deleteFilm.do" method="POST">
-	<input type="hidden" value="${film.filmId }" name="filmID" /> <input
-			type="submit" value="Update" />
-		<input type="submit" value="Delete" />
-	
+	<input type="hidden" value="${film.filmId }" name="filmId" /> <input
+			type="submit" value="Delete" />
 	</form>
 	<form action="updateFilm.do" method="GET">
-		<input type="hidden" value="${film.filmId }" name="filmID" /> <input
+		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
 			type="submit" value="Update" />
 	</form>
+	<a href="index.html">Go Home</a>
 </body>
 </html>

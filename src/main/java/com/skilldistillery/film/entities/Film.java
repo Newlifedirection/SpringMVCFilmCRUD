@@ -14,7 +14,14 @@ public class Film {
 	private String rating;
 	private String specialFeature;
 	private String language;
+	private String categories;
 
+	public String getCategories() {
+		return categories;
+	}
+	public void setCategories(String categories) {
+		this.categories = categories;
+	}
 	public Film() {}
 	public Film(int filmId, String title, String description, Integer releaseYear, String languageId, Integer rentalDuration,
 			Double rentalRate, Integer length, Double replacementCost, String rating, String specialFeature, String language) {

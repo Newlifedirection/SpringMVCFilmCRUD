@@ -1,6 +1,7 @@
 package com.skilldistillery.film.controllers;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -62,9 +63,10 @@ public class FilmController {
 	@RequestMapping(path="updateFilm.do", method=RequestMethod.POST)
 	public ModelAndView updateFilm(Film f) {
 		ModelAndView mv = new ModelAndView();
+		Film filmToEdit = null;
 		try {
-			f = dao.updateFilm(f);
-			mv.addObject("film", f);
+			filmToEdit = dao.updateFilm(f);
+			mv.addObject("film", filmToEdit);
 			mv.setViewName("result");
 		} catch (SQLException e) {
 			mv.setViewName("error");
@@ -75,11 +77,12 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path="updateFilm.do", method=RequestMethod.GET)
-	public ModelAndView updateFilmPage(int filmID) {
+	public ModelAndView updateFilmPage(int filmId) {
+		System.out.println(filmId);
 		ModelAndView mv = new ModelAndView();
 		Film filmToEdit = null;
 		try {
-			filmToEdit = dao.findFilmById(filmID);
+			filmToEdit = dao.findFilmById(filmId);
 			mv.addObject("film", filmToEdit);
 			mv.setViewName("updatefilm");
 		} catch (SQLException e) {
@@ -90,16 +93,37 @@ public class FilmController {
 		
 	}
 	@RequestMapping(path="deleteFilm.do", method=RequestMethod.POST)
-	public ModelAndView delete(int filmId) {
+	public ModelAndView delete(Integer filmId) {
 		ModelAndView mv = new ModelAndView();
 		try {
 			dao.deleteFilm(filmId);
-			mv.setViewName("index.html");
+			mv.setViewName("deletePage");
 		} catch (SQLException e) {
 			mv.setViewName("error");
 			e.printStackTrace();
 		}
 		return mv;
 		
+	}
+	
+	@RequestMapping(path="searchFilm.do", method=RequestMethod.GET)
+	public ModelAndView search() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("search");
+		return mv;
+		
+	}
+	@RequestMapping(path = "SearchResults.do",params = "keyword", method = RequestMethod.GET)
+	public ModelAndView findByKeyword(@RequestParam(name = "keyword") String kw) {
+		ModelAndView mv = new ModelAndView();
+		try {
+			List<Film> films = dao.findFilmsByKeyword(kw);
+			mv.addObject("films", films);
+			mv.setViewName("searchResults");
+		} catch (SQLException e) {
+			mv.setViewName("error");
+			e.printStackTrace();
+		}
+		return mv;
 	}
 }

@@ -105,7 +105,7 @@ public class FilmDAOImpl implements FilmDAO {
 				String features = rs.getString(11);
 				String language = rs.getString(12);
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
-						features, language);
+						features, null);
 				films.add(film);
 				return films;
 			}
@@ -166,9 +166,9 @@ public class FilmDAOImpl implements FilmDAO {
 				double repCost = rs.getDouble(9);
 				String rating = rs.getString(10);
 				String features = rs.getString(11);
-				String language = rs.getString(12);
+		
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
-						features, language);
+						features, null);
 				films.add(film);
 			}
 		} catch (SQLException e) {
@@ -229,19 +229,47 @@ public class FilmDAOImpl implements FilmDAO {
 
 	@Override
 	public Film updateFilm(Film f) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "UPDATE film SET title= ?, description= ?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=? where id=?";
+		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		try {
+
+			conn.setAutoCommit(false); // Start transaction
+			pstmt.setString(1, f.getTitle());
+			pstmt.setString(2, f.getDescription());
+			pstmt.setInt(3, f.getReleaseYear());
+			pstmt.setString(4, f.getLanguageId());
+			pstmt.setInt(5, f.getRentalDuration());
+			pstmt.setDouble(6, f.getRentalRate());
+			pstmt.setInt(7, f.getLength());
+			pstmt.setDouble(8, f.getReplacementCost());
+			pstmt.setInt(9, f.getFilmId());
+			System.out.println(pstmt);
+			int uc = pstmt.executeUpdate();
+
+		
+			conn.commit();
+
+		} catch (SQLException e) {
+			System.out.println("Failed to Update");
+			conn.rollback();
+			processException(e);
+		}
+		return f;
+	
 	}
 
 	@Override
-	public int deleteFilm(int filmId) throws SQLException {
+	public int deleteFilm(Integer filmId) throws SQLException {
 		String sql = "DELETE FROM film WHERE id=?";
+		System.out.println(filmId);
 		Connection conn = null;
 		try {
 			conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+			conn.setAutoCommit(false); // Start transaction
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, filmId);
-			conn.setAutoCommit(false); // Start transaction
 			int uc = pstmt.executeUpdate();
 			conn.commit();
 			return uc;
@@ -255,4 +283,24 @@ public class FilmDAOImpl implements FilmDAO {
 		}
 		return filmId;
 	}
+
+	@Override
+	public Film findFilmCategories(int filmId) throws SQLException {
+			Film film = null;
+			Connection conn = DriverManager.getConnection(URL, "student", "student");
+			String sql = " SELECT cat.name FROM film f JOIN film_category fc ON fc.film_id = f.id JOIN category cat ON fc.category_id = cat.id WHERE f.id = ?";
+			PreparedStatement stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			ResultSet filmCategories = stmt.executeQuery();
+			if (filmCategories.next()) {
+				String categories = filmCategories.getString(1);
+				film.setCategories(categories);
+			}
+			filmCategories.close();
+			stmt.close();
+			conn.close();
+			return film;
+		
+	}
+	
 }
