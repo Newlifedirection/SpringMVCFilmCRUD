@@ -36,9 +36,10 @@
 							<td>${film.description }</td>
 							<td>
 								<form action=GetFilmData.do method="GET">
-								<input type="hidden" value="${film.filmId }" name="filmId" /> 
-								<input type="submit" value="Details" />
+									<input type="hidden" value="${film.filmId }" name="filmId" />
+									<input type="submit" value="Details" />
 								</form>
+							</td>
 						</tr>
 					</c:forEach>
 			</table>

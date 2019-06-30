@@ -18,7 +18,7 @@
 	<a href="index.html" class="btn btn-block btn-info">Home</a>
 	<c:choose>
 		<c:when test="${! empty film}">
-			<h2>Film View</h2>
+			<h2>Film Details</h2>
 			<ul>
 				<li>Film ID: ${film.filmId}</li>
 				<li>Title: ${film.title}</li>
@@ -30,6 +30,16 @@
 				<li>Length: ${film.length}</li>
 				<li>Replacement Cost: ${film.replacementCost}</li>
 				<li>Rating: ${film.rating}</li>
+				<br>
+				<li>Actors:<br><c:choose>
+						<c:when test="${! empty actors}">
+							<c:forEach items="${actors}" var="actor">
+								<tr>
+									<td>${actor.firstName} ${actor.lastName }<br></td>
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose></li>
 			</ul>
 		</c:when>
 		<c:otherwise>

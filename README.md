@@ -7,7 +7,7 @@ Web Application using Java 8 JDBC API to perform CRUD Operations using mySql/SQL
 
 ### Technologies Used
 git/gitHub, mySqlL, MAMP, Spring Tool Suite/Eclipse, Gradle, Maven,
-Java 8, Java JDBC API, Java Server Pages, SQL DML/DDL
+Java 8, Java JDBC API, Java Server Pages, SQL DML/DDL,
 HTML, Bootstrap Framework/CSS,
 Spring MVC Pattern, DAO Pattern, Singleton Selector Pattern
 
