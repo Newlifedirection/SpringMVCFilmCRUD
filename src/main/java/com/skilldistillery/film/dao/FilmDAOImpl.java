@@ -210,11 +210,17 @@ public class FilmDAOImpl implements FilmDAO {
 
 			int uc = pstmt.executeUpdate();
 			ResultSet keys = pstmt.getGeneratedKeys();
+			System.out.println(uc);
 
 			while (keys.next()) {
 				returnedId = keys.getInt(1);
+				
 			}
-
+			sql = "INSERT INTO film_category (film_id, category_id) VALUES (?,1)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, returnedId);
+			uc = pstmt.executeUpdate();
+			System.out.println("inserted" + returnedId );
 			System.out.println(uc);
 			conn.commit();
 		} catch (SQLException e) {
