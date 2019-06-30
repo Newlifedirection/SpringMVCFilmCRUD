@@ -6,11 +6,16 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Film</title>
+<title>Insert Film</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <link rel='stylesheet' href='style.css'>
 </head>
 <body>
-	<h1>Add New Film</h1>
+<a href="index.html" class="btn btn-block btn-info">Home</a>
+	<h2>Add New Film</h2>
 	<form action="AddFilm.do" modelAttribute="film" method="post">
 		<table>
 			<form>
@@ -24,40 +29,39 @@
 				</tr>
 				<tr>
 					<td>Release Year</td>
-					<td><input type="text" name="releaseYear" /></td>
+					<td><input type="number" name="releaseYear" /></td>
 				</tr>
 				<tr>
 					<td>Language ID :</td>
-					<td><input type="text" name="languageId" /></td>
+					<td><input type="number" name="languageId" /></td>
 				</tr>
 				<tr>
 					<td>Rental Duration :</td>
-					<td><input type="text" name="rentalDuration" /></td>
+					<td><input type="number" name="rentalDuration" /></td>
 				</tr>
 				<tr>
 					<td>Rental Rate :</td>
-					<td><input type="text" name="rentalRate" /></td>
+					<td><input type="number" name="rentalRate" /></td>
 				</tr>
 				<tr>
 					<td>Length :</td>
-					<td><input type="text" name="length" /></td>
+					<td><input type="number" name="length" /></td>
 				</tr>
 				<tr>
 					<td>Replacement Cost :</td>
-					<td><input type="text" name="replacementCost" /></td>
+					<td><input type="number" name="replacementCost" /></td>
 				</tr>
 				<tr>
 					<td>Rating :</td>
 					<td><label><input type="radio" name="rating" value="G">G</label><br>
-					<label><input type="radio" name="rating" value="PG">PG</label><br>
+						<label><input type="radio" name="rating" value="PG">PG</label><br>
 						<label><input type="radio" name="rating" value="PG13">PG13</label><br>
 						<label><input type="radio" name="rating" value="R">R</label><br>
 						<label><input type="radio" name="rating" value="NC17">NC17</label><br></td>
 				</tr>
-
 				<tr>
 					<td></td>
-					<td><input type="submit" value="Save" /></td>
+					<td><input type="submit" value="Submit" /></td>
 				</tr>
 			</form>
 		</table>

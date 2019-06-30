@@ -26,8 +26,8 @@ public class FilmController {
 	public void setDao(FilmDAO dao) {
 		this.dao = dao;
 	}
-	
-	@RequestMapping(path="GetFilmData.do",params="filmId", method=RequestMethod.GET)
+
+	@RequestMapping(path = "GetFilmData.do", params = "filmId", method = RequestMethod.GET)
 	public ModelAndView getFilmById(@RequestParam(name = "filmId") int n) {
 		ModelAndView mv = new ModelAndView();
 		Film f;
@@ -40,10 +40,18 @@ public class FilmController {
 			e.printStackTrace();
 		}
 		return mv;
-		
+
 	}
-	
-	@RequestMapping(path="AddFilm.do", method=RequestMethod.POST)
+
+	@RequestMapping(path = "AddFilm.do", method = RequestMethod.GET)
+	public ModelAndView addFilmToDatabase(Film film) {
+		ModelAndView mv = new ModelAndView();
+
+		mv.setViewName("addFilm");
+		return mv;
+	}
+
+	@RequestMapping(path = "AddFilm.do", method = RequestMethod.POST)
 	public ModelAndView addFilm(Film f) {
 		ModelAndView mv = new ModelAndView();
 		int newId;
@@ -58,9 +66,10 @@ public class FilmController {
 			e.printStackTrace();
 		}
 		return mv;
-		
+
 	}
-	@RequestMapping(path="updateFilm.do", method=RequestMethod.POST)
+
+	@RequestMapping(path = "updateFilm.do", method = RequestMethod.POST)
 	public ModelAndView updateFilm(Film f) {
 		ModelAndView mv = new ModelAndView();
 		Film filmToEdit = null;
@@ -73,10 +82,10 @@ public class FilmController {
 			e.printStackTrace();
 		}
 		return mv;
-		
+
 	}
-	
-	@RequestMapping(path="updateFilm.do", method=RequestMethod.GET)
+
+	@RequestMapping(path = "updateFilm.do", method = RequestMethod.GET)
 	public ModelAndView updateFilmPage(int filmId) {
 		System.out.println(filmId);
 		ModelAndView mv = new ModelAndView();
@@ -90,9 +99,10 @@ public class FilmController {
 			e.printStackTrace();
 		}
 		return mv;
-		
+
 	}
-	@RequestMapping(path="deleteFilm.do", method=RequestMethod.POST)
+
+	@RequestMapping(path = "deleteFilm.do", method = RequestMethod.POST)
 	public ModelAndView delete(Integer filmId) {
 		ModelAndView mv = new ModelAndView();
 		try {
@@ -103,17 +113,18 @@ public class FilmController {
 			e.printStackTrace();
 		}
 		return mv;
-		
+
 	}
-	
-	@RequestMapping(path="searchFilm.do", method=RequestMethod.GET)
+
+	@RequestMapping(path = "searchFilm.do", method = RequestMethod.GET)
 	public ModelAndView search() {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("search");
 		return mv;
-		
+
 	}
-	@RequestMapping(path = "SearchResults.do",params = "keyword", method = RequestMethod.GET)
+
+	@RequestMapping(path = "SearchResults.do", params = "keyword", method = RequestMethod.GET)
 	public ModelAndView findByKeyword(@RequestParam(name = "keyword") String kw) {
 		ModelAndView mv = new ModelAndView();
 		try {

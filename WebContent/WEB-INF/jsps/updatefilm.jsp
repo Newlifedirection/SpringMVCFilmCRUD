@@ -7,65 +7,74 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <title>Film</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 <link rel='stylesheet' href='style.css'>
 </head>
 <body>
-	<h1>Edit Film</h1>
+<a href="index.html" class="btn btn-block btn-info">Home</a>
+	<h1>Update Film</h1>
 	<form action="updateFilm.do" modelAttribute="film" method="post">
 		<c:choose>
 			<c:when test="${! empty film}">
 				<ul>
-					<li>Film Id: ${film.filmId}</li>
+					<li>Film ID: ${film.filmId}</li>
 					<li>Title: ${film.title}</li>
 					<li>Description: ${film.description}</li>
 					<li>Release Year: ${film.releaseYear}</li>
-					<li>Language Id: ${film.languageId}</li>
+					<li>Language ID: ${film.languageId}</li>
 					<li>Rental Duration: ${film.rentalDuration}</li>
 					<li>Rental Rate: ${film.rentalRate}</li>
 					<li>Length: ${film.length}</li>
 					<li>Replacement Cost: ${film.replacementCost}</li>
 					<li>Rating: ${film.rating}</li>
-				
 				</ul>
 			</c:when>
 			<c:otherwise>
 				<p>No Film Found</p>
+				
 			</c:otherwise>
 		</c:choose>
 		<table>
-
-			<form>
 				<tr>
 					<td>Title :</td>
-					<td><input type="text" name="title" value="${film.title}"/></td>
+					<td><input type="text" name="title" value="${film.title}" /></td>
 				</tr>
 				<tr>
 					<td>Description :</td>
-					<td><input type="text" name="description" value="${film.description}"/></td>
+					<td><input type="text" name="description"
+						value="${film.description}" /></td>
 				</tr>
 				<tr>
 					<td>Release Year :</td>
-					<td><input type="text" name="releaseYear" value="${film.releaseYear}"/></td>
+					<td><input type="text" name="releaseYear"
+						value="${film.releaseYear}" /></td>
 				</tr>
 				<tr>
 					<td>Language ID :</td>
-					<td><input type="text" name="languageId" value="${film.languageId}"/></td>
+					<td><input type="text" name="languageId"
+						value="${film.languageId}" /></td>
 				</tr>
 				<tr>
 					<td>Rental Duration :</td>
-					<td><input type="text" name="rentalDuration" value="${film.rentalDuration}"/></td>
+					<td><input type="text" name="rentalDuration"
+						value="${film.rentalDuration}" /></td>
 				</tr>
 				<tr>
 					<td>Rental Rate :</td>
-					<td><input type="text" name="rentalRate" value="${film.rentalRate}"/></td>
+					<td><input type="text" name="rentalRate"
+						value="${film.rentalRate}" /></td>
 				</tr>
 				<tr>
 					<td>Length :</td>
-					<td><input type="text" name="length" value="${film.length}"/></td>
+					<td><input type="text" name="length" value="${film.length}" /></td>
 				</tr>
 				<tr>
 					<td>Replacement Cost :</td>
-					<td><input type="text" name="replacementCost" value="${film.replacementCost}"/></td>
+					<td><input type="text" name="replacementCost"
+						value="${film.replacementCost}" /></td>
 				</tr>
 				<tr>
 					<td>Rating :</td>
@@ -78,10 +87,9 @@
 
 				<tr>
 					<td></td>
-					<td><input type= "hidden" value="${film.filmId }" name="filmId"/>
-					<input type="submit" value="Save" /></td>
+					<td><input type="hidden" value="${film.filmId }" name="filmId" />
+						<input type="submit" value="Submit" /></td>
 				</tr>
-			</form>
 		</table>
 	</form>
 </body>
