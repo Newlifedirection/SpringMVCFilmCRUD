@@ -9,8 +9,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.test.annotation.Rollback;
-
 import com.skilldistillery.film.entities.Actor;
 import com.skilldistillery.film.entities.Film;
 
@@ -28,7 +26,7 @@ public class FilmDAOImpl implements FilmDAO {
 	public Film findFilmById(int filmId) throws SQLException {
 		Film film = null;
 		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-		String sql = "SELECT film.title, film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, l.name from film JOIN language l ON film.language_id = l.id WHERE film.id =?";
+		String sql = "SELECT film.title, film.description, film.release_year, film.language_id, film.rental_duration, film.rental_rate, film.length, film.replacement_cost, film.rating, film.special_features, name FROM film JOIN film_category fc ON fc.film_id = film.id JOIN category cat ON fc.category_id = cat.id WHERE film.id = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, filmId);
 		ResultSet rs = pstmt.executeQuery();
@@ -44,9 +42,9 @@ public class FilmDAOImpl implements FilmDAO {
 				Double repCost = rs.getDouble(8);
 				String rating = rs.getString(9);
 				String features = rs.getString(10);
-				String language = rs.getString(11);
+				String category = rs.getString(11);
 				film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
-						features, language);
+						features, null, category);
 			}
 		} catch (SQLException e) {
 			processException(e);
@@ -103,9 +101,9 @@ public class FilmDAOImpl implements FilmDAO {
 				double repCost = rs.getDouble(9);
 				String rating = rs.getString(10);
 				String features = rs.getString(11);
-				String language = rs.getString(12);
+
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
-						features, null);
+						features, null, null);
 				films.add(film);
 				return films;
 			}
@@ -168,7 +166,7 @@ public class FilmDAOImpl implements FilmDAO {
 				String features = rs.getString(11);
 
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
-						features, null);
+						features, null, null);
 				films.add(film);
 			}
 		} catch (SQLException e) {
@@ -282,24 +280,4 @@ public class FilmDAOImpl implements FilmDAO {
 		}
 		return filmId;
 	}
-
-	
-	public Film findFilmCategories(Film f) throws SQLException {
-		Connection conn = DriverManager.getConnection(URL, "student", "student");
-		String sql = " SELECT cat.name FROM film f JOIN film_category fc ON fc.film_id = f.id JOIN category cat ON fc.category_id = cat.id WHERE f.id = ?";
-		PreparedStatement stmt = conn.prepareStatement(sql);
-		if (f != null) {
-		stmt.setInt(1, f.getFilmId());
-		ResultSet filmCategories = stmt.executeQuery();
-		if (filmCategories.next()) {
-			String category = filmCategories.getString(1);
-			f.setCategories(category);
-		}
-		filmCategories.close();
-		stmt.close();
-		conn.close();
-		} 
-		return f;
-	}
-
 }
