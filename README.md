@@ -6,8 +6,8 @@ Collaborators: Craig Dreiling and Cecil Kitch
 Web Application using Java 8 JDBC API to perform CRUD Operations using mySql/SQL. User can add films or query for  film by id or keyword.
 
 ### Technologies Used
-git/gitHub, mySql/SQL, MAMP, Spring Tool Suite/Eclipse, Gradle, Maven,
-Java 8, Java JDBC API, Java Server Pages,
+git/gitHub, mySqlL, MAMP, Spring Tool Suite/Eclipse, Gradle, Maven,
+Java 8, Java JDBC API, Java Server Pages, SQL DML/DDL
 HTML, Bootstrap Framework/CSS,
 Spring MVC Pattern, DAO Pattern, Singleton Selector Pattern
 
