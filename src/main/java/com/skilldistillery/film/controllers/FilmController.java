@@ -96,7 +96,7 @@ public class FilmController {
 		try {
 			filmToEdit = dao.findFilmById(filmId);
 			mv.addObject("film", filmToEdit);
-			mv.setViewName("updatefilm");
+			mv.setViewName("updateFilm");
 		} catch (SQLException e) {
 			mv.setViewName("error");
 			e.printStackTrace();
