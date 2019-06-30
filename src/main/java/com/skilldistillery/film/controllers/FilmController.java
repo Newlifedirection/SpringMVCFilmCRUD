@@ -63,7 +63,7 @@ public class FilmController {
 			newId = dao.addFilm(f);
 			newFilm = dao.findFilmById(newId);
 			mv.addObject("film", newFilm);
-			mv.setViewName("updatePage");
+			mv.setViewName("updateFilm");
 		} catch (SQLException e) {
 			mv.setViewName("error");
 			e.printStackTrace();

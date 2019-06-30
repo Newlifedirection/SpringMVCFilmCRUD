@@ -247,7 +247,7 @@ public class FilmDAOImpl implements FilmDAO {
 
 	@Override
 	public Film updateFilm(Film f) throws SQLException {
-		String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=? where id=?";
+		String sql = "UPDATE film SET title=?, description=?, release_year=?, language_id=?, rental_duration=?, rental_rate=?, length=?, replacement_cost=?, rating=? where id=?";
 		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 
@@ -262,7 +262,8 @@ public class FilmDAOImpl implements FilmDAO {
 			pstmt.setDouble(6, f.getRentalRate());
 			pstmt.setInt(7, f.getLength());
 			pstmt.setDouble(8, f.getReplacementCost());
-			pstmt.setInt(9, f.getFilmId());
+			pstmt.setString(9, f.getRating());
+			pstmt.setInt(10, f.getFilmId());
 			System.out.println(pstmt);
 			int uc = pstmt.executeUpdate();
 			System.out.println(uc);
@@ -270,10 +271,11 @@ public class FilmDAOImpl implements FilmDAO {
 			pstmt.close();
 			conn.close();
 		} catch (SQLException e) {
-			System.out.println("Failed to Update");
+			System.out.println("Update Failed");
 			conn.rollback();
 			processException(e);
 		} finally {
+			pstmt.close();
 			conn.close();
 		}
 		return f;
