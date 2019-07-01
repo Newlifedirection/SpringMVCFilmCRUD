@@ -15,6 +15,6 @@ Spring MVC Pattern, DAO Pattern, Singleton Selector Pattern
 
 ### Lessons Learned
 Learned the key aspects of the Spring MVC Pattern.
-CRUD operation considrations for referential integrity.
+CRUD operation considerations for referential integrity.
 Annotation driven @RequestMapping with controllers to set the view with an InternalResourceViewResolver.
 Document Descriptor Stub: web.xml  Definition file for welcome-file-list and as well as servlet, servlet-name and servlet-mapping.
