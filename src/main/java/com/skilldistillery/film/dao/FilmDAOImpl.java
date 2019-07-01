@@ -49,7 +49,6 @@ public class FilmDAOImpl implements FilmDAO {
 		} catch (SQLException e) {
 			processException(e);
 		} finally {
-			rs.close();
 			pstmt.close();
 			conn.close();
 		}
@@ -74,7 +73,6 @@ public class FilmDAOImpl implements FilmDAO {
 		} catch (SQLException e) {
 			processException(e);
 		} finally {
-			rs.close();
 			pstmt.close();
 			conn.close();
 		}
@@ -106,7 +104,6 @@ public class FilmDAOImpl implements FilmDAO {
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
 						features, null, null);
 				films.add(film);
-				rs.close();
 				pstmt.close();
 				conn.close();
 				return films;
@@ -114,7 +111,6 @@ public class FilmDAOImpl implements FilmDAO {
 		} catch (SQLException e) {
 			processException(e);
 		} finally {
-			rs.close();
 			pstmt.close();
 			conn.close();
 		}
@@ -125,7 +121,7 @@ public class FilmDAOImpl implements FilmDAO {
 	public List<Actor> findActorsByFilmId(int filmId) throws SQLException {
 		List<Actor> actors = new ArrayList<>();
 		Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
-		String sql = "select actor.first_name, actor.last_name, film.title from actor join film_actor on actor.id = film_actor.actor_id join film on film.id = film_actor.film_id where film.id =?;";
+		String sql = "SELECT actor.first_name, actor.last_name, film.title FROM actor JOIN film_actor ON actor.id = film_actor.actor_id JOIN film ON film.id = film_actor.film_id WHERE film.id =?;";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setInt(1, filmId);
 		ResultSet rs = pstmt.executeQuery();
@@ -136,9 +132,6 @@ public class FilmDAOImpl implements FilmDAO {
 				Actor actor = new Actor(filmId, firstName, lastName);
 				actors.add(actor);
 			}
-			rs.close();
-			pstmt.close();
-			conn.close();
 		} catch (SQLException e) {
 			processException(e);
 		} finally {
@@ -175,16 +168,11 @@ public class FilmDAOImpl implements FilmDAO {
 				Film film = new Film(filmId, title, desc, releaseYear, langId, rentDur, rate, length, repCost, rating,
 						features, null, null);
 				films.add(film);
-				rs.close();
-				pstmt.close();
-				conn.close();
 			}
 		} catch (SQLException e) {
 			processException(e);
 		} finally {
-			rs.close();
-			pstmt.close();
-			conn.close();
+
 		}
 		return films;
 	}
