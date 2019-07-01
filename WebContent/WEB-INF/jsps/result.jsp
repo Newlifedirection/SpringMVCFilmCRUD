@@ -11,8 +11,6 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-
-<link rel='stylesheet' href='style.css'>
 </head>
 <body>
 	<a href="index.html" class="btn btn-block btn-primary">Home</a>
@@ -21,7 +19,6 @@
 			<h2>${film.title}</h2>
 			<ul>
 				</li><img src="https://picsum.photos/120/175?random=1">
-				
 				<li><strong>Film ID:</strong> ${film.filmId}</li>
 				<li><strong>Title:</strong> ${film.title}</li>
 				<li><strong>Description:</strong> ${film.description}</li>

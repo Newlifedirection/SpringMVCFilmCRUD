@@ -63,7 +63,8 @@ public class FilmController {
 			newId = dao.addFilm(f);
 			newFilm = dao.findFilmById(newId);
 			mv.addObject("film", newFilm);
-			mv.setViewName("updateFilm");
+			mv.addObject("filmID", newFilm);
+			mv.setViewName("result");
 		} catch (SQLException e) {
 			mv.setViewName("error");
 			e.printStackTrace();
@@ -92,7 +93,7 @@ public class FilmController {
 	}
 
 	@RequestMapping(path = "UpdateFilm.do", method = RequestMethod.GET)
-	public ModelAndView updateFilmPage(int filmId) {
+	public ModelAndView updateFilm(int filmId) {
 		System.out.println(filmId);
 		ModelAndView mv = new ModelAndView();
 		Film filmToEdit = null;

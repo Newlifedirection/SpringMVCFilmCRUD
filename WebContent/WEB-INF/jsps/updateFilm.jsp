@@ -16,36 +16,7 @@
 
 	<a href="index.html" class="btn btn-block btn-primary">HOME</a>
 	<a href="#" class="btn btn-block btn-warning">UPDATE ${film.title}</a>
-	<%-- <c:choose>
-		<c:when test="${! empty film}">
-			<h2>Film Details</h2>
-			<ul>
-				<li><strong>Film ID:</strong> ${film.filmId}</li>
-				<li><strong>Title:</strong> ${film.title}</li>
-				<li><strong>Description:</strong> ${film.description}</li>
-				<li><strong>Release Year:</strong> ${film.releaseYear}</li>
-				<li><strong>Language ID:</strong> ${film.languageId}</li>
-				<li><strong>Rental Duration:</strong> ${film.rentalDuration}</li>
-				<li><strong>Rental Rate:</strong> ${film.rentalRate}</li>
-				<li><strong>Length:</strong> ${film.length}</li>
-				<li><strong>Replacement Cost:</strong> ${film.replacementCost}</li>
-				<li><strong>Rating:</strong> ${film.rating}<br></li>
-				<li><strong>Actors:</strong><br> <c:choose>
-						<c:when test="${! empty actors }">
-							<c:forEach items="${actors }" var="actor">
-								<tr>
-									<td>${actor.firstName }${actor.lastName }<br></td>
-								</tr>
-							</c:forEach>
-						</c:when>
-					</c:choose></li>
-				<li><strong>Category:</strong> ${film.category }</li>
-			</ul>
-		</c:when>
-		<c:otherwise>
-			<h2>No Film Found</h2>
-		</c:otherwise>
-	</c:choose> --%>
+
 	<form action="UpdateFilm.do" modelAttribute="film" method="POST">
 		<table style="”float: right;"margin-left:10px;”>
 			<tr>
@@ -98,10 +69,6 @@
 		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
 			type="submit" value="SUBMIT" class="btn btn-block btn-success" />
 	</form>
-	<%-- <form action="DeleteFilm.do" method="POST">
-		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
-			type="submit" value="Delete" class="btn btn-block btn-danger" />
-	</form>
-	<a href="index.html" class="btn btn-block btn-primary">Home</a> --%>
+
 </body>
 </html>
