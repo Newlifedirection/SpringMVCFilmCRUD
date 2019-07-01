@@ -15,6 +15,7 @@
 <body>
 	<a href="index.html" class="btn btn-block btn-primary">HOME</a>
 	<a href="#" class="btn btn-block btn-success">SEARCH RESULTS</a>
+
 	<c:choose>
 		<c:when test="${! empty films}">
 			<table class="table">
@@ -31,21 +32,23 @@
 							<td>
 								<form action=GetFilmData.do method="GET">
 									<input type="hidden" value="${film.filmId }" name="filmId" />
-									<input type="submit" value="Details" class="btn btn-block btn-warning" />
+									<input type="submit" value="Details"
+										class="btn btn-block btn-warning" />
 								</form>
 							</td>
 						</tr>
 					</c:forEach>
-			</table>
-
-		</c:when>
-		<c:otherwise>
-			<h2>Keyword Not Found<br>Try Again</h2>
-			<form action="SearchResults.do" method="GET">
-				Enter Keyword: <input type="text" name="keyword" size="25" /> <input
-					type="submit" value="SUBMIT" class="btn btn-block btn-success" />
-			</form>
-		</c:otherwise>
+				</table>
+				</c:when>
+				<c:otherwise>
+					<h2>
+						Keyword Not Found<br>Try Again
+					</h2>
+					<form action="SearchResults.do" method="GET">
+						Enter Keyword: <input type="text" name="keyword" size="25" /> <input
+							type="submit" value="SUBMIT" class="btn btn-block btn-success" />
+					</form>
+				</c:otherwise>
 	</c:choose>
 
 </body>

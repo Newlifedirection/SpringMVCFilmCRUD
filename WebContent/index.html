@@ -5,7 +5,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<title>Film Data</title>
+<title>MVCFILMSITE</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -23,30 +23,57 @@
 </script>
 </head>
 <body>
-	<form action="GetFilmData.do" method="GET">
+	<!-- 	<form action="GetFilmData.do" method="GET">
 		<fieldset>
 			<input type="submit" value="FIND FILM BY FILM ID"
 				class="btn btn-block btn-primary" /> <input type="number"
 				name="filmId" id="filmdId" size="25" placeholder="Enter Film ID"
 				onClick="empty()" />
 		</fieldset>
-	</form>
+	</form> -->
+	<nav class="navbar navbar-light bg-light">
+	
+		<a class="navbar-brand" href="#"> MVCFILMSITE</a>
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="filmId">@Search By Film Id</span>
+			</div>
+			<form class="form-inline" action="GetFilmData.do">
+
+				<input type="text" name="filmId" id="filmId" class="form-control"
+					placeholder="Ex: 1" aria-label="filmId"
+					aria-describedby="basic-addon1">
+			</form>
+		</div>
+		<br>
+		<div class="input-group">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="filmId">Search By Keyword</span>
+			</div>
+			<form class="form-inline" action="SearchResults.do">
+				<input type="text" name="keyword" id="keyword" class="form-control"
+					placeholder="Ex: Database" aria-label="filmId"
+					aria-describedby="basic-addon1">
+			</form>
+		</div>
+		<a href="AddFilm.do" class="btn btn-block btn-success" role="button"
+			aria-pressed="true">ADD NEW FILM</a>
+	</nav>
 	<!-- 	<form action="UpdateFilm.do" method="GET">
 		<input type="number" name="filmId" size="25"
 			placeholder="Enter Film ID" /> <input type="submit"
 			value="Update Film by ID" class="btn btn-block btn-primary" />
 	</form> -->
-	<form action="SearchResults.do" method="GET">
-		<input type="submit" value="FIND FILM BY KEYWORD"
-			class="btn btn-block btn-primary" /> <input type="text"
-			name="keyword" size="25" placeholder="Enter Keyword" />
-	</form>
+	<!-- 		<form action="SearchResults.do" method="GET">
+			<input type="submit" value="FIND FILM BY KEYWORD"
+				class="btn btn-block btn-primary" /> <input type="text"
+				name="keyword" size="25" placeholder="Enter Keyword" />
+		</form> -->
 	<!-- 	<form action="DeleteFilm.do" method="POST">
 		<input type="number" name="filmId" size="25"
 			placeholder="Enter Film ID" /> <input type="submit"
 			value="Delete Film by ID" class="btn btn-block btn-danger" />
 	</form> -->
-	<a href="AddFilm.do" class="btn btn-block btn-success" role="button"
-		aria-pressed="true">ADD NEW FILM</a>
+
 </body>
 </html>

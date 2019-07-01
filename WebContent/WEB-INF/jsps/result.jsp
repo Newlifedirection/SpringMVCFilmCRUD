@@ -20,6 +20,8 @@
 		<c:when test="${! empty film}">
 			<h2>${film.title}</h2>
 			<ul>
+				</li><img src="https://picsum.photos/120/175?random=1">
+				
 				<li><strong>Film ID:</strong> ${film.filmId}</li>
 				<li><strong>Title:</strong> ${film.title}</li>
 				<li><strong>Description:</strong> ${film.description}</li>
