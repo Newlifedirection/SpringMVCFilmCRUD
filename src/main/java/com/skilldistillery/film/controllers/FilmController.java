@@ -76,9 +76,12 @@ public class FilmController {
 	public ModelAndView updateFilm(Film f) {
 		ModelAndView mv = new ModelAndView();
 		Film filmToEdit = null;
+		List<Actor> actors =null;
 		try {
 			filmToEdit = dao.updateFilm(f);
+			actors = dao.findActorsByFilmId(f.getFilmId());
 			mv.addObject("film", filmToEdit);
+			mv.addObject("actors", actors);
 			mv.setViewName("result");
 		} catch (SQLException e) {
 			mv.setViewName("error");
@@ -93,9 +96,12 @@ public class FilmController {
 		System.out.println(filmId);
 		ModelAndView mv = new ModelAndView();
 		Film filmToEdit = null;
+		List<Actor> actors =null;
 		try {
 			filmToEdit = dao.findFilmById(filmId);
+			actors = dao.findActorsByFilmId(filmId);
 			mv.addObject("film", filmToEdit);
+			mv.addObject("actors", actors);
 			mv.setViewName("updateFilm");
 		} catch (SQLException e) {
 			mv.setViewName("error");
@@ -109,7 +115,7 @@ public class FilmController {
 		ModelAndView mv = new ModelAndView();
 		try {
 			dao.deleteFilm(filmId);
-			mv.setViewName("deletePage");
+			mv.setViewName("result");
 		} catch (SQLException e) {
 			mv.setViewName("error");
 			e.printStackTrace();

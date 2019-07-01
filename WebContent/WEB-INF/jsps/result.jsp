@@ -15,10 +15,10 @@
 <link rel='stylesheet' href='style.css'>
 </head>
 <body>
-	<a href="index.html" class="btn btn-block btn-info">Home</a>
+	<a href="index.html" class="btn btn-block btn-primary">Home</a>
 	<c:choose>
 		<c:when test="${! empty film}">
-			<h2>Film Details</h2>
+			<h2>${film.title}</h2>
 			<ul>
 				<li><strong>Film ID:</strong> ${film.filmId}</li>
 				<li><strong>Title:</strong> ${film.title}</li>
@@ -43,20 +43,22 @@
 			</ul>
 		</c:when>
 		<c:otherwise>
-			<h2>No Film Found</h2>
+			<div class="alert alert-primary" role="alert">Film Not Found!
+				Did you delete something?</div>
 		</c:otherwise>
 	</c:choose>
-	<form action=GetFilmData.do method="GET">
-		Enter Film ID: <input type="number" value="${film.filmId }"
-			name="filmId" /> <input type="submit" value="Get Film Data" />
+	<%-- 	<form action="GetFilmData.do" method="GET">
+		<input type="number" name="filmId" size="25"
+			placeholder="Enter Film ID" value="${film.filmId }" /> <input
+			type="submit" value="Submit" class="btn btn-block btn-primary" />
+	</form> --%>
+	<form action="UpdateFilm.do" method="GET">
+		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
+			type="submit" value="Update" class="btn btn-block btn-warning" />
 	</form>
 	<form action="DeleteFilm.do" method="POST">
 		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
-			type="submit" value="Delete" />
-	</form>
-	<form action="UpdateFilm.do" method="GET">
-		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
-			type="submit" value="Update" />
+			type="submit" value="Delete" class="btn btn-block btn-danger" />
 	</form>
 </body>
 </html>

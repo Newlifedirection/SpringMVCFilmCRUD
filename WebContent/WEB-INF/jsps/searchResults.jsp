@@ -11,20 +11,14 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel='stylesheet' href='style.css'>
-
 </head>
 <body>
-	<a href="index.html" class="btn btn-block btn-info">Home</a>
+	<a href="index.html" class="btn btn-block btn-primary">Home</a>
+	<a href="#" class="btn btn-block btn-success">Search Results</a>
 	<c:choose>
 		<c:when test="${! empty films}">
-			<form action="SearchResults.do" method="GET">
-				Keyword: <input type="text" name="keyword" size="25" /> <input
-					type="submit" value="Get Film" />
-			</form>
-			<h2>Search Results:</h2>
-			<table>
-				<thead>
+			<table class="table">
+				<table class="table table-hover table-sm">
 					<tr>
 						<th scope="col">Title</th>
 						<th scope="col">Description</th>
@@ -37,7 +31,7 @@
 							<td>
 								<form action=GetFilmData.do method="GET">
 									<input type="hidden" value="${film.filmId }" name="filmId" />
-									<input type="submit" value="Details" />
+									<input type="submit" value="Details" class="btn btn-block btn-warning" />
 								</form>
 							</td>
 						</tr>
@@ -48,10 +42,11 @@
 		<c:otherwise>
 			<h2>Keyword Not Found</h2>
 			<form action="SearchResults.do" method="GET">
-				Film Keyword: <input type="text" name="keyword" size="25" /> <input
+				Keyword: <input type="text" name="keyword" size="25" /> <input
 					type="submit" value="Get Film" />
 			</form>
 		</c:otherwise>
 	</c:choose>
+
 </body>
 </html>

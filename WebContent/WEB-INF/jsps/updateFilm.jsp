@@ -11,13 +11,15 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
-<link rel='stylesheet' href='style.css'>
 </head>
 <body>
-	<a href="index.html" class="btn btn-block btn-info">Home</a>
-	<h1>Update Film</h1>
-	<c:choose>
+
+	<a href="index.html" class="btn btn-block btn-primary">Home</a>
+	<a href="#" class="btn btn-block btn-warning">Update Film
+		ID${film.filmId}</a>
+	<%-- <c:choose>
 		<c:when test="${! empty film}">
+			<h2>Film Details</h2>
 			<ul>
 				<li><strong>Film ID:</strong> ${film.filmId}</li>
 				<li><strong>Title:</strong> ${film.title}</li>
@@ -29,15 +31,24 @@
 				<li><strong>Length:</strong> ${film.length}</li>
 				<li><strong>Replacement Cost:</strong> ${film.replacementCost}</li>
 				<li><strong>Rating:</strong> ${film.rating}<br></li>
+				<li><strong>Actors:</strong><br> <c:choose>
+						<c:when test="${! empty actors }">
+							<c:forEach items="${actors }" var="actor">
+								<tr>
+									<td>${actor.firstName }${actor.lastName }<br></td>
+								</tr>
+							</c:forEach>
+						</c:when>
+					</c:choose></li>
+				<li><strong>Category:</strong> ${film.category }</li>
 			</ul>
 		</c:when>
 		<c:otherwise>
-			<p>No Film Found</p>
-
+			<h2>No Film Found</h2>
 		</c:otherwise>
-	</c:choose>
+	</c:choose> --%>
 	<form action="UpdateFilm.do" modelAttribute="film" method="POST">
-		<table>
+		<table style="”float: right;"margin-left:10px;”>
 			<tr>
 				<td><strong>Title :</strong></td>
 				<td><input type="text" name="title" value="${film.title}" /></td>
@@ -84,13 +95,14 @@
 					<label><input type="radio" name="rating" value="R">R</label><br>
 					<label><input type="radio" name="rating" value="NC17">NC17</label><br></td>
 			</tr>
-
-			<tr>
-				<td></td>
-				<td><input type="hidden" value="${film.filmId }" name="filmId" />
-					<input type="submit" value="Submit" /></td>
-			</tr>
 		</table>
+		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
+			type="submit" value="Submit" class="btn btn-block btn-success" />
 	</form>
+	<%-- <form action="DeleteFilm.do" method="POST">
+		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
+			type="submit" value="Delete" class="btn btn-block btn-danger" />
+	</form>
+	<a href="index.html" class="btn btn-block btn-primary">Home</a> --%>
 </body>
 </html>
