@@ -14,9 +14,8 @@
 </head>
 <body>
 
-	<a href="index.html" class="btn btn-block btn-primary">Home</a>
-	<a href="#" class="btn btn-block btn-warning">Update Film
-		ID${film.filmId}</a>
+	<a href="index.html" class="btn btn-block btn-primary">HOME</a>
+	<a href="#" class="btn btn-block btn-warning">UPDATE ${film.title}</a>
 	<%-- <c:choose>
 		<c:when test="${! empty film}">
 			<h2>Film Details</h2>
@@ -97,7 +96,7 @@
 			</tr>
 		</table>
 		<input type="hidden" value="${film.filmId }" name="filmId" /> <input
-			type="submit" value="Submit" class="btn btn-block btn-success" />
+			type="submit" value="SUBMIT" class="btn btn-block btn-success" />
 	</form>
 	<%-- <form action="DeleteFilm.do" method="POST">
 		<input type="hidden" value="${film.filmId }" name="filmId" /> <input

@@ -13,8 +13,8 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<a href="index.html" class="btn btn-block btn-primary">Home</a>
-	<a href="AddFilm.do" class="btn btn-block btn-success">Add Film</a>
+	<a href="index.html" class="btn btn-block btn-primary">HOME</a>
+	<a href="AddFilm.do" class="btn btn-block btn-success">ADD NEW FILM</a>
 	<form action="AddFilm.do" modelAttribute="film" method="POST">
 		<table class="table table-striped table-sm table-hover">
 			<tr>
@@ -67,7 +67,7 @@
 					<label><input type="radio" name="rating" value="NC17">NC17</label><br></td>
 			</tr>
 		</table>
-		<input type="submit" value="Submit" class="btn btn-block btn-warning" />
+		<input type="submit" value="SUBMIT" class="btn btn-block btn-warning" />
 	</form>
 </body>
 </html>

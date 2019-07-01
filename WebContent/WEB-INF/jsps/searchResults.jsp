@@ -13,8 +13,8 @@
 	crossorigin="anonymous">
 </head>
 <body>
-	<a href="index.html" class="btn btn-block btn-primary">Home</a>
-	<a href="#" class="btn btn-block btn-success">Search Results</a>
+	<a href="index.html" class="btn btn-block btn-primary">HOME</a>
+	<a href="#" class="btn btn-block btn-success">SEARCH RESULTS</a>
 	<c:choose>
 		<c:when test="${! empty films}">
 			<table class="table">
@@ -40,10 +40,10 @@
 
 		</c:when>
 		<c:otherwise>
-			<h2>Keyword Not Found</h2>
+			<h2>Keyword Not Found<br>Try Again</h2>
 			<form action="SearchResults.do" method="GET">
-				Keyword: <input type="text" name="keyword" size="25" /> <input
-					type="submit" value="Get Film" />
+				Enter Keyword: <input type="text" name="keyword" size="25" /> <input
+					type="submit" value="SUBMIT" class="btn btn-block btn-success" />
 			</form>
 		</c:otherwise>
 	</c:choose>
